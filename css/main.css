@@ -27,10 +27,10 @@ h1 {
 p {
     font-size: 1.5em;
     line-height: 1.4em;
-    color: #72D903;
+    color: #FD643B;
 }
 footer {
-    border-top: 10px solid #FD643B;
+    border-top: 10px solid #72D903;
     font-size: .8em;
 }
 
