@@ -25,14 +25,14 @@ h1 {
     font-family:'Montserrat';
 }
 p {
-    font-size: 2em;
+    font-size: 1.5em;
     line-height: 1.4em;
-    color: #FD643B;
+    color: #000000;
     
     
 }
 footer {
-    border-top: 10px solid #72D903;
+    border-top: 5px solid #72D903;
     font-size: .8em;
 }
 
