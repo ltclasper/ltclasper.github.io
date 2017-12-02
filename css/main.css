@@ -28,6 +28,7 @@ p {
     font-size: 1.5em;
     line-height: 1.4em;
     color: #000000;
+    font-family:'Palatino';
     
     
 }
@@ -39,6 +40,7 @@ footer {
 ul.posts { 
     margin: 20px auto 40px; 
     font-size: 1.5em;
+    font-family:'Palatino';
 }
 
 ul.posts li {
