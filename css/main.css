@@ -4,7 +4,7 @@ body {
     background-color: #54A9A4;
 }
 nav ul, footer ul {
-    font-family:'Garamond';
+    font-family:'Courier';
     padding: 0px;
     list-style: none;
     font-weight: bold;
