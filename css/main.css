@@ -16,7 +16,7 @@ nav ul li, footer ul li {
 a {
     text-decoration: none;
     color: #FDE511;
-    font-family:'Palatino';
+    font-family:'Courier';
 }
 a:hover {
     text-decoration: underline;
