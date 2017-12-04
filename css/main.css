@@ -4,7 +4,7 @@ body {
     background-color: #54A9A4;
 }
 nav ul, footer ul {
-    font-family:'Courier';
+    font-family:'Georgia','serif';
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -16,20 +16,20 @@ nav ul li, footer ul li {
 a {
     text-decoration: none;
     color: #FDE511;
-    font-family:'Courier';
+    font-family:''Georgia','serif'';
 }
 a:hover {
     text-decoration: underline;
 }
 h1 {
     font-size: 3em;
-    font-family:'Courier';
+    font-family:''Georgia','serif'';
 }
 p {
     font-size: 1.5em;
     line-height: 1.4em;
     color: #000000;
-    font-family:'Courier';
+    font-family:''Georgia','serif'';
     
     
 }
@@ -41,10 +41,10 @@ footer {
 ul.posts { 
     margin: 20px auto 40px; 
     font-size: 1.5em;
-    font-family:'Courier';
+    font-family:''Georgia','serif'';
 }
 
 ul.posts li {
     list-style: none;
-    font-family:'Courier';
+    font-family:''Georgia','serif'';
 }
