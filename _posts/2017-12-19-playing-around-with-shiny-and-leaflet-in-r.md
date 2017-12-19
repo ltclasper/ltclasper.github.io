@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Playing around with Shiny and Leaflet in R!"
+title: "Experimenting with Shiny and Leaflet in R!"
 date: 2017-12-19
 ---
 
