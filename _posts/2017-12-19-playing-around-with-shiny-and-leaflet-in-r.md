@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: "Playing around with Shiny and Leaflet in R!"
