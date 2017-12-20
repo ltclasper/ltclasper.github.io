@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Luke Clasper, Launches Site!"
+title: "Website Launched!"
 date: 2017-12-01
 ---
 
