@@ -25,14 +25,18 @@ h1 {
     font-size: 3em;
     font-family:"Courier", Courier, monospace;
 }
+h2 {
+    font-size: 2em;
+    font-family:"Courier", Courier, monospace;
+}
+
 p {
     font-size: 1.5em;
     line-height: 1.4em;
     color: #000000;
     font-family:"Courier", Courier, monospace;
-    
-    
 }
+
 footer {
     border-top: 4px solid #72D903;
     font-size: .8em;
