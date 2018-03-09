@@ -2,25 +2,25 @@ h3
 {
   font: 180% Verdana, Geneva, sans-serif;
   font-weight: bold;
-  color: #000000;
-  background-color: #72D903;
+  color: #FDE511;
+  background-color:#54A9A4;
 }
 h4
 {
   font: 125% Verdana, Geneva, sans-serif;
   font-weight: bold;
   color: #000000;
-  background-color: #FD643B;
+  background-color: #54A9A4;
 }
 body {
     background-color: #54A9A4;
 }
 
 .ol-control button{ 
-    background-color: #54A9A4;
+    background-color: #72D903;
 	color: #FD643B;
 	
 }
 .ol-control button:hover{ 
-    background-color: #72D903;
+    background-color: #FDE511;
 }
