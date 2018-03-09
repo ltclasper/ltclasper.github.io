@@ -1,26 +1,26 @@
 h3
 {
-  font: 180% courier;
+  font: 180% Verdana, Geneva, sans-serif;
   font-weight: bold;
-  color: Aqua;
-  background-color: MediumBlue ;
+  color: #FDE511;
+  background-color: #72D903;
 }
 h4
 {
-  font: 125% courier;
+  font: 125% Verdana, Geneva, sans-serif;
   font-weight: bold;
-  color: DarkSlateGray;
-  background-color: Aqua;
+  color: #54A9A4;
+  background-color: #FD643B;
 }
 body {
-    background-color: Gray;
+    background-color: #54A9A4;
 }
 
 .ol-control button{ 
-    background-color: gray;
-	color: Aqua;
+    background-color: #54A9A4;
+	color: #FD643B;
 	
 }
 .ol-control button:hover{ 
-    background-color: DeepSkyBlue ;
+    background-color: #72D903;
 }
