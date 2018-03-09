@@ -3,7 +3,7 @@
         'Point': new ol.style.Style({
           image: new ol.style.Circle({
             fill: new ol.style.Fill({
-              color: '#FDE511'
+              color: '#72D903'
             }),
             radius: 5,
             stroke: new ol.style.Stroke({
@@ -30,7 +30,7 @@
         'MultiPoint': new ol.style.Style({
           image: new ol.style.Circle({
             fill: new ol.style.Fill({
-              color: '#FDE511'
+              color: '#72D903'
             }),
             radius: 5,
             stroke: new ol.style.Stroke({
