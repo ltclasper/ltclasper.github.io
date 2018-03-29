@@ -60,3 +60,13 @@ ul.posts li {
     list-style: none;
     font-family:Verdana, Geneva, sans-serif;
 }
+hr {
+    border-top: 4px solid #72D903;
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 4px;
+}
