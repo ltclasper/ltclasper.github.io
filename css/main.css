@@ -62,6 +62,7 @@ ul.posts li {
 }
 hr {
     border-top: 4px solid #72D903;
+    border-bottom: 4px solid #FD643B;
     display: block;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
