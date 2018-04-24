@@ -209,3 +209,7 @@ table.attrs tr td:first-child {
   color: black;
   font: normal medium sans-serif;
 }
+.h5 {
+  color: "#FDE511";
+  font: normal medium sans-serif;
+}
