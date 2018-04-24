@@ -4,4 +4,4 @@ title: "Qgis2threejs"
 date: 2018-04-24
 ---
 
-[Qgis2threejs](/index2threejs.html)
+[Qgis2threejs](qgis2threejs/index.html)
