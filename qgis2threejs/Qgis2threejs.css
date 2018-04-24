@@ -210,9 +210,9 @@ table.attrs tr td:first-child {
   font: normal medium sans-serif;
 }
 h5 {
-  color: #FDE511;
+  color: #72D903;
   font-family:Verdana, Geneva, sans-serif;
-  background-color: #72D903;
+  background-color: white;
 }
 a:hover {
     text-decoration: underline;
