@@ -6,7 +6,7 @@ date: 2018-06-13
 
 This week I've been thinking about how to represent changes over time in GIS. It’s traditionally been tricky and time consuming to visualise spatio-temporal data and to track changes in a spatial phenomenon over time. It’s mostly been done by using a series of static maps and altering styling and symbols to display changes over time. This has meant that we’ve often seen the temporal elements of geospatial datasets ignored. 
 
-However, in recent years there has been great progress made in the usability of GIS as well as in tools for animation and video/GIF formats. These factors coupled with the ongoing craze for creating beautiful data visualisations has bought about exciting new ways to look at spatio-temporal data. These advancements have mostly been driven by open source software and user derived libraries and plug-ins. 
+However, in recent years there has been great progress made in the usability of GIS as well as in tools for animation and video/GIF formats. These factors coupled with the ongoing trend for creating beautiful data visualisations has bought about exciting new ways to look at spatio-temporal data. These advancements have mostly been driven by open source software and user derived libraries and plug-ins. 
 
 Probably the first stop for spatio-temporal data presentation and exploration in GIS is QGIS’s excellent [Time Manager plug-in]( https://plugins.qgis.org/plugins/timemanager/).
 
