@@ -8,7 +8,7 @@ In my last post I looked at spatio-temporal data with the QGIS Time Manager plug
 
 The first example was created with the QGIS Time Manager:
 
-<img src="/london_tweets_time_manager.gif" alt="Tweet Hours Time Manager" style="width:849x;height:414px;">
+<img src="/london_tweets_time_manager.gif" alt="Tweet Hours Time Manager" style="width:949x;height:514px;">
 
 
 This second example was made with the gganimate extension of the ggplot R library:
