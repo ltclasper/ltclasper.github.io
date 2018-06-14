@@ -16,6 +16,6 @@ For my first attempted I looked at some open data from the Forestry Commission c
 
 It’s a fugus that arrived in the UK from continental Europe and can cause ash trees to deteriorate and eventually die. It’s been of huge concern since it was first detected in 2012 and since then a great deal of research has been made into the spread of the fungus and into ways of curtailing the threat.
 
-The animation below, which I created with the Time Manager, shows the progress of Chalara through the UK from 2012 to 2017. The pattern of spread of the fungus is made immediately obvious as each year sees it’s progression west. 
+The animation below, which I created with the Time Manager, shows the progress of Chalara through the UK from 2012 to 2017. The pattern of spread of the fungus is made immediately obvious as each year sees it’s progression further west. 
 
 <img src="/ash_die_back.gif" alt="Ash Die Back" style="width:949x;height:514px;">
