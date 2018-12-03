@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Qgis2threejs"
-date: 2018-04-24
+date: 2018-05-24
 ---
 
 I've been playing with the excellent Qgis2threejs plugin for QGIS. It looks like it's had an overhaul for QGIS 3 and it really is a brilliant way to visualise any 3D geospatial data. The plugin allows you to setup a view with your layers in QGIS desktop and then export to a browser where your 3D model is rendered and you’re able to pan and tilt the model.  
