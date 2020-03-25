@@ -12,8 +12,7 @@ It splits the image into seven MSPA classifications: Core, Islet, Perforation, E
 
 Please see the resulting map below, you’ll see that each classification is given a different colour, I have also included the legend below.
 
-<img src="/wf_mspa" alt="Wyre Forest MSPA" style="width:433x;height:317px;">
+<img src="/wf_mspa.tif" alt="Wyre Forest MSPA" style="width:433x;height:317px;">
 
-
-<img src="/mspa_classes" alt="MSPA Classes" style="width:396x;height:287px;">
+<img src="/mspa_classes.JPG" alt="MSPA Classes" style="width:396x;height:287px;">
 
