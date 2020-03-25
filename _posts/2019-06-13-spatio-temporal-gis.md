@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Spatio-Temporal GIS"
-date: 2018-06-13
+date: 2019-06-13
 ---
 
 This week I've been thinking about how to represent changes over time in GIS. It’s traditionally been tricky and time consuming to visualise spatio-temporal data and to track changes in a spatial phenomenon over time. It’s mostly been done by using a series of static maps and altering styling and symbols to display changes over time. This has meant that we’ve often seen the temporal elements of geospatial datasets ignored. 
