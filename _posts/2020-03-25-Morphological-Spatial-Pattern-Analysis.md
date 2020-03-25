@@ -10,7 +10,7 @@ I’ve been looking at Morphological Spatial Pattern Analysis (MSPA) which analy
 
 It splits the image into seven MSPA classifications: Core, Islet, Perforation, Edge, Loop, Bridge, and Branch. I chose to study Wyre Forest District in Worcestershire, UK. It’s a semi-rural district with three principle towns and many smaller villages nestled between mixed agricultural land and woodland. I wanted to analyse the connectivity of the built-up areas and pinpoint urban cores and edge zones at the transition between urban and rural landcovers.
 
-Please see the resulting map below, you’ll see that each classification is given a different colour, I have also included the legend below.
+Please see the resulting map below, you’ll see that each classification is given a different colour, I have also included the legend below. You can see from the results the three main settlements in green with satellite villages around them, all defined as cores and sitting within the non-urban matrix in grey. The urban cores are connected by red bridges and orange branches. Yellow loops surround the cores and most urban cores are punctuated with blue perforations, these represent areas of green space such as parks, playing fields and urban nature reserves. Finally, we see the black edges bordering the cores, this is the rural-urban fringe, where land uses mix.
 
 
 <img src="/wf_mspa.jpg" alt="Wyre Forest MSPA" style="width:866x;height:632px;">
