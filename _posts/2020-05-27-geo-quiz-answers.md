@@ -31,8 +31,6 @@ Here are the answers to the Geo-Quiz:
 23. Gibraltar
 24. Bois de Boulogne
 
-
-
 1.	Turquie
 2.	Hawaï
 3.	Séville
