@@ -28,8 +28,9 @@ Here are the answers to the Geo-Quiz:
 20.	Hungary
 21.	Dubai
 22.	Mauritius
-23.	Gibraltar
-24. Bois de Boulgne
+23. Gibraltar
+24. Bois de Boulogne
+
 
 
 1.	Turquie
