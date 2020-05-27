@@ -4,7 +4,7 @@ title: "Geo-Quiz! Answers"
 date: 2020-05-27
 ---
 
-Here are the answers to the Geo-Quiz:
+Here are the answers to the Geo-Quiz, English version:
 
 1.	Turkey
 2.	Hawaii
@@ -30,6 +30,8 @@ Here are the answers to the Geo-Quiz:
 22.	Mauritius
 23. Gibraltar
 24. Bois de Boulogne
+
+French version:
 
 1.	Turquie
 2.	Hawaï
