@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Morphological Spatial Pattern Analysis"
+date: 2020-03-25
+---
+
+I am a member of the Green Party, when there is a local election one of the most useful tools for a successful campaign are decent maps of the ward/district/constituency. The main benefit of a good map, with the electoral division administrative boundary highlighted, is that you need to know what geographical area you are a candidate for! In order to be able to stand you will normally have to live within a certain distance of the administrative boundary too. Another benefit or a good quality, and accurate, election map is that they are essential for delivering your campaign leaflets. With this in mind, along with the fact that you need to keep budget and map data licencing in mind, Ordnance Survey (OS) Open Data (or other international mapping agency equivalents) is the best choice. I made the following map in QGIS using OS Open Mapping and OS Boundary-Line.
+
+
+<img src="/bewdley_and_rock.png" alt="bewdley and rock.png" style="width:9933x;height:7015px;">
