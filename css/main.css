@@ -5,10 +5,10 @@
 
 #header{
     left: 50%;
-    margin-auto: -500px;
+    margin-left: -500px;
     background:url(/sunset_photo.jpg) no-repeat;
     width:1000px;
-    height:200px;
+    height:300px;
 }
 }
 body {
