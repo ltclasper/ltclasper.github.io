@@ -1,3 +1,10 @@
+#header {
+    margin:          0 auto;
+    width:           830px;
+    height:          250px;    
+    background-image: url("/sunset_photo.jpg");
+    background-repeat:no-repeat;
+}
 body {
     margin: 60px auto;
     width: 70%;
