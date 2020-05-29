@@ -1,9 +1,15 @@
-#header {
-    margin:          0 auto;
-    width:           830px;
-    height:          250px;    
-    background-image: url("/sunset_photo.jpg");
-    background-repeat:no-repeat;
+#wrapperHeader{
+    position: relative;
+    background-image:url(/sunset_photo.jpg);
+}
+
+#header{
+    left: 50%;
+    margin-left: -500px;
+    background:url(/sunset_photo.jpg) no-repeat;
+    width:1000px;
+    height:200px;
+}
 }
 body {
     margin: 60px auto;
