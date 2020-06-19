@@ -921,13 +921,6 @@ stourportpolyline = L.polyline([[52.3610223652833, -2.24568798783927],
 [52.3610223652833, -2.24568798783927]], {color:
 '#4287f5',weight:5}).addTo(map);
 
-map.on('click',function(e){
-var coord=e.latlng.toString().split(',');
-var lat=coord[0].split('(');
-var long=coord[1].split(')');
-alert("You just clicked the map at latitude: "+ lat[1]+" and longitude:"+long[0])
-});
-
 
 
 </script>
