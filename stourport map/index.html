@@ -1,7 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-   <title>Stourport Map</title>
+<html>
+<head><title>Stourport-on-Severn Map</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -30,46 +28,39 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
 
 
 clockwarehouseMarker = L.marker([52.33786, -2.280076],{title:"Clock Warehouse",alt:"Clock Warehouse",riseOnHover: true}).addTo(map);
-
-clockwarehouseMarker.bindPopup("<h1>Clock Warehouse</h1><h3>The warehouse was built in the late 17th century with the clock tower added in 1812. Now home to Stourport Yacht Club.</h3><img src='\clock_basin.jpg'alt='Clock Warehouse' width='274px'/>")
+clockwarehouseMarker.bindPopup("<h1>Clock Warehouse</h1><h3>The warehouse was built in the late 17th century with the clock tower added in 1812. Now home to Stourport Yacht Club.</h3>")
 
 
 sosMarker = L.marker([52.340442, -2.280549],{title:"Stourport-on-Severn",alt:"Stourport-on-Severn",riseOnHover: true}).addTo(map);
-
 sosMarker.bindPopup("<h1>Stourport-on-Severn</h1><h2>Wyre Forest District</h2><h3>Worcestershire, United Kingdom</h3><img src='\stourport_logo.jpg'alt='Stourport Logo' width='275px'/>")
 
 
 akchurchMarker = L.marker([52.336906, -2.292007],{title:"St Bartholomew's Parish Church at Areley Kings",alt:"St Bartholomew's Parish Church at Areley Kings ",riseOnHover: true}).addTo(map);
-
-akchurchMarker.bindPopup("<h1>St Bartholomew's Parish Church</h1><h2>Areley Kings</h2><h3>Founded as a Norman Church, with a continuous history and a partial re-building in the 19th century.The church tower was built in the 14th century and has 6 bells.</h3><img src='\areley_kings_church.jpg'alt='St Bartholomew's Parish Church at Areley Kings' width='320px'/>")
-
-
-cavesMarker = L.marker([52.327458, -2.275007],{title:"Redstone Caves",alt:"Redstone Caves",riseOnHover: true}).addTo(map);
-
-cavesMarker.bindPopup("<h1>Redstone Caves</h1><h3>The soft sandstone of Redstone Rock is easily carved and there is evidence of human-made habitation in the cliff face since Stone Age times. The caves that can be seen today were mostly made in the 12th century, when a hermitage was established there, conveniently located for the hermits to be on hand to offer blessings and prayers for passers-by in return for alms.  It was said to house up to 500 men, who may have also manned the ferry crossing, which was there due to the presence of a ford until the river was dredged. The caves were later used as domestic dwellings and were inhabited almost continuously until the mid twentieth century.</h3><img src='\caves.jpg'alt='Redstone Caves' width='259px'/>")
+akchurchMarker.bindPopup("<h1>St Bartholomew's Parish Church</h1><h2>Areley Kings</h2><h3>Founded as a Norman Church, with a continuous history and a partial re-building in the 19th century. The church tower was built in the 14th century and has 6 bells.</h3><img src='\ak_church.jpg'alt='St Bartholomew's Parish Church at Areley Kings' width='200px'/>")
 
 
 churchhouseMarker = L.marker([52.336391, -2.291781],{title:"Areley Kings Church House",alt:"Areley Kings Church House",riseOnHover: true}).addTo(map);
-
-churchhouseMarker.bindPopup("<h1>Areley Kings Church House</h1><h3>An oak timbered, wattle and daub, building situatated in Areley Kings churchyard. Built in 1536 it is a grade II listed building.</h3><img src='\ak_church_house.jpg'alt='Areley Kings Church House' width='320px'/>")
+churchhouseMarker.bindPopup("<h1>Areley Kings Church House</h1><h3>An oak timbered, wattle and daub, building situatated in Areley Kings churchyard. Built in 1536 it is a grade II listed building.</h3><img src='\ak_church_house.jpg'alt='Areley Kings Church House' width='200px'/>")
 
 
 
 wesleyMarker = L.marker([52.33982, -2.278585],{title:"Stourport Wesley Methodist Church" ,alt:"Stourport Wesley Methodist Church",riseOnHover: true}).addTo(map);
+wesleyMarker.bindPopup("<h1>Stourport Wesley Methodist Church</h1><h3>The chapel was founded in 1788. John Wesley, the founder of the Methodist movement, preached at the chapal in 1788 and 1790.</h3>")
 
-wesleyMarker.bindPopup("<h1>Stourport Wesley Methodist Church</h1><h3>The chapel was founded in 1788. John Wesley, the founder of the Methodist movement, preached at the chapal in 1788 and 1790.</h3><img src='\wesley.jpg'alt='Stourport Wesley Methodist Church' width='320px'/>")
 
 
 memorialMarker = L.marker([52.344831, -2.286133],{title:"Memorial park" ,alt:"Memorial park",riseOnHover: true}).addTo(map);
+memorialMarker.bindPopup("<h1>Memorial park</h1><h3>Moor Hall was a 19th-century country house (now demolished) who gave a portion of their land to Stourport in 1924 to form Memorial Park. The park has tennis courts, a children's playground, communtiy centre and picnic areas.</h3>")
 
-memorialMarker.bindPopup("<h1>Memorial park</h1><h3>Moor Hall was a 19th-century country house and associated park. A portion of the land was given to Stourport in 1924 to form Memorial Park. The house has been demolished. The park has tennis courts, a children's playground and picnic areas. It also has a Community Centre and public facilities and a small Venture Scouts headquarters. It provides general recreational and junior football training and match spaces.</h3><img src='\memorial_park.jpg'alt='Memorial park' width='275px'/>")
 
-   
 
 burlishMarker = L.marker([52.361698, -2.282302],{title:"Burlish Top Nature Reserve" ,alt:"Burlish Top Nature Reserve",riseOnHover: true}).addTo(map);
+burlishMarker.bindPopup("<h1>Burlish Top Nature Reserve</h1><h3>A nature reserve with acid grassland, small pools and woodland habitats. Wildlife includes Grass Snakes, Green Woodpeckers, Slow Worms, Common Lizards, Smooth Newts, Frogs and Green Tiger Beetles. The area was used as a Second World War American Army training and hospital camp.</h3>")
 
-burlishMarker.bindPopup("<h1>Burlish Top Nature Reserve</h1><h3>Nature reserve with acid grassland, small pools and woodland habitats. Wildlife includes Grass Snakes, Green Woodpeckers, Slow Worms, Common Lizards, Smooth Newts, Frogs and Green Tiger Beetles. The area has an interesting history, with the site being used as a World War II American Army training and hospital camp.</h3><img src='\burlishtop.jpg'alt='Burlish Top' width='300px'/>")
-   
+
+redstonecavesMarker = L.marker([52.327460, -2.275007],{title:"Redstone Caves",alt:"Redstone Caves",riseOnHover: true}).addTo(map);
+redstonecavesMarker.bindPopup("<h1>Redstone Caves</h1><h3>There is evidence of human habitation in the sandstone cliff face since Stone Age times. The caves that can be seen today were mostly made in the 12th century when a hermitage was established. The caves were thought to house up to 500 men, who would have manned the ferry crossing across the river, where there was a ford. The caves were continuously inhabited until the mid-twentieth century.</h3><img src='\caves.jpg'alt='Redstone Caves' width='300px'/>")
+
 
 
 stourportpolyline = L.polyline([[52.3610223652833, -2.24568798783927],
