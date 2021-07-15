@@ -18,7 +18,7 @@ html, body, #map {
 height: 100%;
 }
 </style>
-</head>
+
 <body>
  
    
