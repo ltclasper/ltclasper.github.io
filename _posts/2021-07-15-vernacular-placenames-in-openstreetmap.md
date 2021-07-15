@@ -4,6 +4,14 @@ title: "Vernacular Placenames in OpenStreetMap"
 date: 2021-07-15
 ---
 
+<html>
+<head>
+  <title>A Leaflet map!</title>
+  <link rel="stylesheet" href="./Leaflet-1.0.3/leaflet.css"/>
+  <script src="./Leaflet-1.0.3/leaflet.js"></script>
+  <style>
+    #map{ height: 100% }
+  </style>
 </head>
 <body>
 
@@ -25,3 +33,4 @@ date: 2021-07-15
   </script>
 </body>
 </html>
+	
