@@ -4,16 +4,24 @@ title: "Vernacular Placenames in OpenStreetMap"
 date: 2021-07-15
 ---
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
    crossorigin=""/>
-
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   
+   
+<div class="myDiv">
+  <h5>Landscape perception field-walking around Stourport-on-Severn, a "Deep Topographical" (Nick Papadimitriou) feature map. <a href="/">ltclasper.net Home</a></h5>
+</div>
+   
+   
+ <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
    crossorigin=""></script>
-
-<div id="mapid"></div>
-
-#mapid { height: 180px; }
-
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+<div id="map" style="width: 100%; height: 100%"></div>
+<script>
+var map = L.map('map',
+{center: [52.340442, -2.280549],
+zoom: 12
+});
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
