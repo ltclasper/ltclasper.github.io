@@ -9,10 +9,7 @@ date: 2021-07-15
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
    crossorigin=""/>
    
-   
-<div class="myDiv">
-  <h5>Landscape perception field-walking around Stourport-on-Severn, a "Deep Topographical" (Nick Papadimitriou) feature map. <a href="/">ltclasper.net Home</a></h5>
-</div>
+
    
    
  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
