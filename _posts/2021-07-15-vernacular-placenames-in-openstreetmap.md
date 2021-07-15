@@ -3,28 +3,53 @@ layout: post
 title: "Vernacular Placenames in OpenStreetMap"
 date: 2021-07-15
 ---
-
-<html>
-
+style>
+.myDiv {
+  border: solid 5px #72D903;
+  background-color: #54A9A4;
+  font-family:Verdana, Geneva, sans-serif;
+  color: #FDE511;
+  width: 100%;
+}
+</style>  
+   
+<link rel="shortcut icon" type="image/png" href="/favicon5.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+   <style>
+body{
+padding: 0;
+margin: 0;
+}
+html, body, #map {
+height: 100%;
+}
+</style>
+</head>
 <body>
+   
+<div class="myDiv">
+  <h5>Landscape perception field-walking around Stourport-on-Severn, a "Deep Topographical" (Nick Papadimitriou) feature map. <a href="/">ltclasper.net Home</a></h5>
+</div>
+   
+   
+ <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+<div id="map" style="width: 100%; height: 100%"></div>
+<script>
+var map = L.map('map',
+{center: [52.340442, -2.280549],
+zoom: 12
+});
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+	
+	</script>
 
- <div id="my-custom-map" style="width: 600px; height: 400px"></div>
-
-
-  <script>
-
-
-  var map = L.map('map').setView([42.35, -71.08], 13);
-
-
-  L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
-    {
-      attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
-      maxZoom: 17,
-      minZoom: 9
-    }).addTo(map);
-
-  </script>
 </body>
 </html>
+
+	
 	
