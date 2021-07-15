@@ -5,24 +5,18 @@ date: 2021-07-15
 ---
 
 <html>
-<head>
-  <title>A Leaflet map!</title>
-  <link rel="stylesheet" href="./Leaflet-1.0.3/leaflet.css"/>
-  <script src="./Leaflet-1.0.3/leaflet.js"></script>
-  <style>
-    #map{ height: 100% }
-  </style>
-</head>
+
 <body>
 
-  <div id="map"></div>
+ <div id="my-custom-map" style="width: 600px; height: 400px"></div>
+
 
   <script>
 
-  // initialize the map
+
   var map = L.map('map').setView([42.35, -71.08], 13);
 
-  // load a tile layer
+
   L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
     {
       attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
