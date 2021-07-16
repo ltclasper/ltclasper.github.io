@@ -16,7 +16,7 @@ I thought it would be interesting to see some examples of how local knowledge an
 </iframe>
 
 
-St Luke's Church
+St Luke's Church, was a short lived missionary chapel which disappeared from Ordnance Survey maps in the 1930s. No foundations remain of the church at the site, and I can only find two mentions of the church online, one is an insurance document and one short description: “St. Luke's Mission church, at Astley Cross, erected in 1900, at a cost of £400, is an iron building, and will seat 160 persons.”
 
 
 <iframe id="StLukesChurchMap"
