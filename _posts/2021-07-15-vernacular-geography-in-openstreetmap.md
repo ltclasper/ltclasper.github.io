@@ -43,12 +43,25 @@ The area known locally as the Snipes is an area of grassland and small woods/cop
 St Bartholomew’s School Sports Field is an area of grassland which lies quite a distance (600m as the crow flies) from the main primary school buildings. I am not sure if it is currently in use but remember playing football on the field when I attended the school as a child. I can find no mention online of this field belonging to the school, other than on OpenStreetMap.
 
 
-<iframe id="TheSnipesMap"
-    title="The Snipes Map"
+<iframe id="StBartholomewFieldMap"
+    title="St Bartholomew's School Playing Field"
     width="600"
     height="400"
     frameborder="0"
     src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2868460416793828,52.32383553683855,-2.2797650098800664,52.32672727396363&layer=mapnik&marker=52.325281429026795,-2.283305525779724">
+</iframe>
+
+
+Larford Sandpit is a legacy of the former sand quarry. There is no mention of this surface type on any current mapping and as the site is now overgrown with vegetation it would take a site visit and historical knowledge of the location to determine the former land use and current state of the land parcel.
+
+
+
+<iframe id="LarfordSandpit"
+    title="SLarford Sandpit"
+    width="600"
+    height="400"
+    frameborder="0"
+    src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2734671831130986,52.32261583593917,-2.266386151313782,52.32550765278131&layer=mapnik&marker=52.3240617679862,-2.26992666721344">
 </iframe>
 
 
