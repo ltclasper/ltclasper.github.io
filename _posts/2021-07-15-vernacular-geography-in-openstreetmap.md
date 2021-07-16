@@ -16,7 +16,7 @@ I thought it would be interesting to see some examples of how local knowledge an
 </iframe>
 
 
-St Luke's Church, was a short lived missionary chapel which disappeared from Ordnance Survey maps in the 1930s. No foundations remain of the church at the site, and I can only find two mentions of the church online, one is a Licence for the performance of Divine Service document and one short description: “St. Luke's Mission church, at Astley Cross, erected in 1900, at a cost of £400, is an iron building, and will seat 160 persons.”
+St Luke's Church, was a short lived missionary chapel which disappeared from Ordnance Survey maps in the 1920s. No foundations remain of the church at the site, and I can only find two mentions of the church online, one is a Licence for the performance of Divine Services document and one is a short description: “St. Luke's Mission church, at Astley Cross, erected in 1900, at a cost of £400, is an iron building, and will seat 160 persons.”
 
 
 <iframe id="StLukesChurchMap"
@@ -26,6 +26,20 @@ St Luke's Church, was a short lived missionary chapel which disappeared from Ord
     frameborder="0"
     src="https://www.openstreetmap.org/export/embed.html?bbox=-2.295128703117371,52.319894339076534,-2.28617012500763,52.322786333785274&layer=mapnik&marker=52.32134036005745,-2.2906494140625">
 </iframe>
+
+
+The area known locally as the Snipes is an area of grassland and small woods/copses and is dotted with large mature trees. It is bordered on the east by the River Severn and [Red Stone Caves] (http://geopark.org.uk/pub/2015/12/redstone-rock/) the north by Stourport and the south by farmland. It was formally a sand quarry. There are no formal mentions of “The Snipes” online.
+
+
+<iframe id="StLukesChurchMap"
+    title="St Luke's Church map"
+    width="600"
+    height="400"
+    frameborder="0"
+    src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2922694683074956,52.32055341572425,-2.2781074047088627,52.326337129984736&layer=mapnik&marker=52.32344536735886,-2.2851884365081787">
+</iframe>
+
+
 
 
 
