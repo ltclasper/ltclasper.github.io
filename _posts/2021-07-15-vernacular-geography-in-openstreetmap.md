@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Vernacular Geography in OpenStreetMap"
+title: "Vernacular Geography and Local Knowledge in OpenStreetMap"
 date: 2021-07-15
 ---
 
