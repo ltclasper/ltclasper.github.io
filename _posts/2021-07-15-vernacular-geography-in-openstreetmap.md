@@ -10,7 +10,7 @@ date: 2021-07-15
     width="1200"
     height="800"
     frameborder="0"
-    src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2941035032,52.3164907934,-2.2633332014,52.3284125945&layer=mapnik&marker=-52.32131573,-2.29056350">
+    src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2941035032,52.3164907934,-2.2633332014,52.3284125945&layer=mapnik&marker=-2.29056350,52.32131573">
 </iframe>
 
 
