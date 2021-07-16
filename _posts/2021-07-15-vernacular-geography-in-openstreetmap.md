@@ -28,7 +28,7 @@ St Luke's Church, was a short lived missionary chapel which disappeared from Ord
 </iframe>
 
 
-The area known locally as the Snipes is an area of grassland and small woods/copses and is dotted with large mature trees. It is bordered on the east by the River Severn and [Red Stone Caves] (http://geopark.org.uk/pub/2015/12/redstone-rock/), the north by Stourport and the south by farmland. It was formerly a sand quarry. There are no official mentions of “The Snipes” online.
+The area known locally as the Snipes is an area of grassland and small woods/copses and is dotted with large mature trees. It is bordered on the east by the River Severn and [Red Stone Caves](http://geopark.org.uk/pub/2015/12/redstone-rock/), the north by Stourport and the south by farmland. It was formerly a sand quarry. There are no official mentions of “The Snipes” online.
 
 
 <iframe id="TheSnipesMap"
