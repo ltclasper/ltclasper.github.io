@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered SVG Bar Chart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .bar {
+            transition: height 0.8s ease-in-out, y 0.8s ease-in-out;
+        }
+        .label {
+            font-size: 10px;
+            fill: #6b7280; /* gray-500 */
+            text-anchor: middle;
+        }
+        #tooltip {
+            position: absolute;
+            opacity: 0;
+            background-color: #1f2937;
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            pointer-events: none;
+            transition: opacity 0.2s ease-in-out;
+            white-space: nowrap;
+            z-index: 10;
+        }
+        .bar-container:hover .bar {
+            filter: brightness(1.2);
+            cursor: pointer;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #09f;
+            animation: spin 1s ease infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-4xl text-center">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2">Annual Rainy Days in the UK (1891-2025)</h1>
+        <p class="text-gray-500 mb-6">Hover over a bar for details, or click to get historical weather context for that year.</p>
+        
+        <div class="w-full h-96 bg-gray-50 rounded-lg p-4 relative">
+            <svg id="chart" class="w-full h-full"></svg>
+        </div>
+
+        <div class="mt-6 flex justify-center items-center gap-4 flex-wrap">
+            <button id="animateButton" class="bg-[#54A9A4] hover:bg-[#4a9893] text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                Replay Animation
+            </button>
+            <button id="geminiAnalyzeButton" class="bg-[#FD643B] hover:bg-[#e45a35] text-white font-bold py-2 px-4 rounded-lg transition-colors flex items-center gap-2">
+                ✨ Analyze Data with Gemini
+            </button>
+        </div>
+        
+        <div id="analysisResult" class="hidden mt-6 text-left bg-gray-50 p-6 rounded-lg border border-gray-200">
+             <!-- Gemini analysis will be injected here -->
+        </div>
+
+    </div>
+    
+    <div id="tooltip"></div>
+
+    <!-- Modal for Historical Context -->
+    <div id="contextModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="modalTitle" class="text-xl font-bold text-gray-800">Historical Weather Context</h2>
+                <button id="closeModalButton" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            </div>
+            <div id="modalBody" class="text-left">
+                <!-- Gemini context will be injected here -->
+            </div>
+            <div id="modalSources" class="text-left mt-4 border-t pt-2">
+                <h3 class="font-semibold text-sm text-gray-600">Sources:</h3>
+                 <!-- Sources will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const csvData = `year,jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec, win, spr, sum, aut, ann
+1891,9.9,0.8,9.3,9.3,16.2,8.7,13.0,20.3,11.3,19.4,13.0,17.4, ---,34.8,42.0,43.8,148.7
+1892,11.9,11.0,5.4,6.6,12.2,12.6,9.7,12.1,11.6,16.1,10.3,10.0,40.2,24.2,34.3,37.9,129.3
+1893,10.9,17.2,3.7,2.7,8.5,7.2,14.8,11.4,9.6,12.5,10.4,13.7,38.1,14.9,33.4,32.4,122.5
+1894,16.6,12.1,8.7,12.0,12.9,10.8,13.5,15.1,5.6,14.1,10.9,12.4,42.4,33.7,39.4,30.6,144.7
+1895,12.2,6.5,11.3,9.4,8.8,11.0,12.1,9.8,12.6,11.4,14.0,10.6,26.4,29.5,32.9,38.0,120.1
+1896,11.1,10.8,10.6,12.0,10.7,12.0,13.7,11.6,12.0,14.6,15.6,13.8,32.3,33.2,37.3,42.2,141.0
+1897,11.1,13.4,10.5,5.1,11.2,11.8,11.0,10.2,11.3,13.6,11.6,12.1,38.2,26.8,32.9,36.5,130.3
+1898,11.3,10.1,11.0,9.1,6.5,9.0,11.5,13.9,11.5,12.8,14.0,11.0,34.4,26.5,34.4,38.3,124.6
+1899,8.4,13.1,10.4,12.1,11.0,11.1,12.8,12.4,10.2,11.1,15.7,11.6,35.8,33.5,36.3,37.0,132.8
+1900,10.0,14.8,10.6,10.0,9.9,10.1,13.5,13.0,10.8,12.3,13.7,13.4,35.4,30.5,36.6,36.8,131.0
+1901,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,135.2
+1902,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,144.1
+1903,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,150.5
+1904,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,128.9
+1905,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,133.3
+1906,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,147.8
+1907,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,155.6
+1908,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,122.4
+1909,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,141.2
+1910,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,139.7
+1911,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,130.1
+1912,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,160.2
+1913,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,145.3
+1914,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,136.5
+1915,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,149.8
+1916,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,158.1
+1917,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,125.7
+1918,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,142.9
+1919,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,137.4
+1920,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,151.3
+1921,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,115.0
+1922,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,143.2
+1923,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,153.6
+1924,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,148.8
+1925,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,134.5
+1926,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,139.1
+1927,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,157.3
+1928,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,146.2
+1929,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,129.4
+1930,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,161.5
+1931,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,140.7
+1932,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,144.3
+1933,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,121.8
+1934,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,136.6
+1935,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,152.1
+1936,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,149.0
+1937,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,133.0
+1938,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,138.4
+1939,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,145.9
+1940,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,150.3
+1941,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,131.2
+1942,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,137.6
+1943,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,142.7
+1944,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,135.5
+1945,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,139.9
+1946,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,154.4
+1947,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,127.3
+1948,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,148.2
+1949,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,132.8
+1950,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,156.9
+1951,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,141.6
+1952,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,146.5
+1953,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,130.4
+1954,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,159.6
+1955,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,123.1
+1956,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,147.1
+1957,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,136.9
+1958,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,153.3
+1959,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,120.6
+1960,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,162.0
+1961,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,134.7
+1962,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,138.8
+1963,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,126.3
+1964,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,128.5
+1965,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,151.0
+1966,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,155.8
+1967,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,143.4
+1968,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,150.7
+1969,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,132.2
+1970,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,141.9
+1971,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,136.1
+1972,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,129.6
+1973,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,134.2
+1974,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,148.4
+1975,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,131.9
+1976,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,124.3
+1977,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,150.0
+1978,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,145.5
+1979,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,149.5
+1980,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,142.1
+1981,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,152.8
+1982,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,147.2
+1983,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,140.4
+1984,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,133.9
+1985,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,153.9
+1986,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,146.7
+1987,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,144.9
+1988,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,139.3
+1989,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,127.8
+1990,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,158.4
+1991,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,135.8
+1992,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,151.1
+1993,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,147.5
+1994,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,154.0
+1995,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,131.4
+1996,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,129.9
+1997,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,137.7
+1998,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,157.0
+1999,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,152.5
+2000,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,163.4
+2001,13.2,10.1,9.0,9.8,7.9,9.4,11.7,11.0,9.9,15.5,12.5,14.2,38.5,26.7,32.1,37.9,130.6
+2002,12.0,12.5,10.8,6.8,10.1,8.3,11.8,13.2,11.7,11.7,16.5,14.7,39.2,27.7,33.3,40.0,134.4
+2003,11.2,6.7,9.3,7.7,6.8,7.7,7.8,11.6,9.8,11.8,9.5,11.6,30.2,23.7,27.1,31.1,109.8
+2004,11.4,11.1,9.4,10.5,8.1,12.7,10.8,13.2,11.3,16.4,11.7,13.9,37.4,28.0,36.7,39.4,134.9
+2005,11.4,7.8,9.8,8.2,9.3,8.7,9.2,11.5,10.5,8.1,12.1,11.3,31.8,27.3,29.4,30.7,114.9
+2006,10.9,7.3,10.8,11.6,10.7,9.0,10.6,14.0,11.6,17.2,12.7,13.8,33.3,33.1,33.6,41.5,138.2
+2007,13.1,8.4,10.9,5.7,11.9,17.1,16.0,12.2,9.1,11.3,13.3,11.5,32.3,28.5,45.3,33.7,137.4
+2008,12.6,9.0,12.9,11.2,9.8,11.1,11.1,14.5,8.1,13.3,8.1,35.5,36.9,38.8,36.7,144.5,157.8
+2009,11.7,7.7,6.6,9.1,10.7,8.6,19.1,10.9,3.2,10.5,22.4,15.8,27.5,26.4,38.7,36.0,136.3
+2010,12.6,13.7,10.1,6.0,6.3,7.1,10.3,14.1,12.1,10.6,12.7,7.2,42.0,22.4,31.4,35.4,122.7
+2011,10.5,12.8,2.9,2.1,9.5,10.8,9.4,10.3,10.1,10.6,9.3,16.2,30.6,14.5,30.5,30.0,114.6
+2012,11.8,5.4,5.1,20.1,8.5,18.0,17.2,14.8,10.0,14.0,12.8,17.8,33.4,33.7,50.1,36.8,155.5
+2013,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,140.3
+2014,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,151.7
+2015,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,135.1
+2016,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,148.9
+2017,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,125.4
+2018,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,130.8
+2019,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,155.2
+2020,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,160.1
+2021,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,142.6
+2022,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,138.5
+2023,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,152.3
+2024,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,145.0
+2025,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,---,133.7`;
+        
+        // --- GEMINI API CALLER ---
+        const API_KEY = ""; // Provided by the environment
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
+
+        async function callGeminiAPI(prompt, useGrounding = false, retries = 3, delay = 1000) {
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+            };
+
+            if (useGrounding) {
+                payload.tools = [{ "google_search": {} }];
+            }
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        const text = candidate.content.parts[0].text;
+                        let sources = [];
+                        const groundingMetadata = candidate.groundingMetadata;
+                        if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                            sources = groundingMetadata.groundingAttributions
+                                .map(attr => ({ uri: attr.web?.uri, title: attr.web?.title }))
+                                .filter(source => source.uri && source.title);
+                        }
+                        return { text, sources };
+                    } else {
+                        throw new Error('Invalid response structure from Gemini API');
+                    }
+                } catch (error) {
+                    if (i === retries - 1) {
+                       return { text: "Sorry, I couldn't fetch the analysis. Please try again.", sources: [] };
+                    }
+                    await new Promise(res => setTimeout(res, delay * Math.pow(2, i)));
+                }
+            }
+        }
+
+
+        function parseCSV(data) {
+            const lines = data.trim().split('\n');
+            const headers = lines.shift().split(',').map(h => h.trim());
+            const yearIndex = headers.indexOf('year');
+            const annIndex = headers.indexOf('ann');
+
+            return lines.map(line => {
+                const values = line.split(',').map(v => v.trim());
+                const year = values[yearIndex];
+                const annualValue = parseFloat(values[annIndex]);
+                if (year && !isNaN(annualValue)) {
+                    return { label: year, value: annualValue };
+                }
+                return null;
+            }).filter(item => item !== null);
+        }
+
+        const dataset = parseCSV(csvData);
+
+        function drawChart() {
+            const svg = document.getElementById('chart');
+            const tooltip = document.getElementById('tooltip');
+            svg.innerHTML = ''; 
+
+            const svgWidth = svg.clientWidth;
+            const svgHeight = svg.clientHeight;
+            const barPadding = 1;
+            const barWidth = (svgWidth / dataset.length) - barPadding;
+            const maxValue = Math.ceil(Math.max(...dataset.map(d => d.value)) / 10) * 10 + 10;
+
+            dataset.forEach((dataPoint, index) => {
+                const barHeight = (dataPoint.value / maxValue) * svgHeight;
+                const barX = index * (barWidth + barPadding);
+                const finalY = svgHeight - barHeight;
+
+                const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                g.setAttribute('class', 'bar-container');
+                svg.appendChild(g);
+
+                const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                rect.setAttribute('x', barX);
+                rect.setAttribute('y', svgHeight);
+                rect.setAttribute('width', barWidth);
+                rect.setAttribute('height', 0);
+                rect.setAttribute('fill', '#54A9A4');
+                rect.setAttribute('class', 'bar');
+                g.appendChild(rect);
+                
+                // Click for historical context
+                g.addEventListener('click', () => getHistoricalContext(dataPoint.label));
+
+                if ((parseInt(dataPoint.label) % 10 === 0) || index === 0 || index === dataset.length -1) {
+                    const textLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    textLabel.setAttribute('class', 'label');
+                    textLabel.setAttribute('x', barX + barWidth / 2);
+                    textLabel.setAttribute('y', svgHeight + 15);
+                    textLabel.textContent = dataPoint.label;
+                    svg.appendChild(textLabel);
+                }
+                
+                g.addEventListener('mouseover', () => {
+                    let tooltipText = `<strong>${dataPoint.label}:</strong> ${dataPoint.value} days`;
+                    if (dataPoint.label === '2025') {
+                        tooltipText += ' (to Oct)';
+                    }
+                    tooltip.innerHTML = tooltipText;
+                    tooltip.style.opacity = '1';
+                });
+                g.addEventListener('mousemove', (event) => {
+                    tooltip.style.left = `${event.pageX + 15}px`;
+                    tooltip.style.top = `${event.pageY - 10}px`;
+                });
+                g.addEventListener('mouseout', () => {
+                    tooltip.style.opacity = '0';
+                });
+
+                setTimeout(() => {
+                    rect.setAttribute('y', finalY);
+                    rect.setAttribute('height', barHeight);
+                }, 100 + index * 10);
+            });
+        }
+        
+        // --- MODAL CONTROLS ---
+        const modal = document.getElementById('contextModal');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const modalSources = document.getElementById('modalSources');
+
+        function showModal(title, body, sources = []) {
+            modalTitle.innerText = title;
+            modalBody.innerHTML = body.replace(/\n/g, '<br>'); // Basic formatting
+            
+            if (sources.length > 0) {
+                 modalSources.innerHTML = `<h3 class="font-semibold text-sm text-gray-600 mb-1">Sources:</h3>` +
+                    sources.map(s => `<a href="${s.uri}" target="_blank" class="text-xs text-blue-600 hover:underline block truncate">${s.title}</a>`).join('');
+                 modalSources.classList.remove('hidden');
+            } else {
+                 modalSources.classList.add('hidden');
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function hideModal() {
+            modal.classList.add('hidden');
+        }
+        
+        closeModalButton.addEventListener('click', hideModal);
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                hideModal();
+            }
+        });
+
+        // --- GEMINI FEATURE: HISTORICAL CONTEXT ---
+        async function getHistoricalContext(year) {
+             const loadingHTML = `<div class="flex justify-center items-center p-8"><div class="spinner"></div></div>`;
+             showModal(`Loading Context for ${year}...`, loadingHTML);
+
+             const prompt = `Provide a brief summary of any notable weather events, patterns, or climate statistics for the United Kingdom in the year ${year}.`;
+             const result = await callGeminiAPI(prompt, true); // Use grounding
+             
+             showModal(`Weather in the UK: ${year}`, result.text, result.sources);
+        }
+
+        // --- GEMINI FEATURE: DATA ANALYSIS ---
+        const geminiAnalyzeButton = document.getElementById('geminiAnalyzeButton');
+        const analysisResultDiv = document.getElementById('analysisResult');
+
+        geminiAnalyzeButton.addEventListener('click', async () => {
+            analysisResultDiv.innerHTML = `<div class="flex justify-center items-center"><div class="spinner"></div></div>`;
+            analysisResultDiv.classList.remove('hidden');
+            geminiAnalyzeButton.disabled = true;
+
+            const maxYear = dataset.reduce((max, p) => p.value > max.value ? p : max, dataset[0]);
+            const minYear = dataset.reduce((min, p) => p.value < min.value ? p : min, dataset[0]);
+            
+            const prompt = `You are a data analyst. Based on the following data for annual rainy days in the UK from 1891 to 2025, provide a brief analysis.
+            - The rainiest year was ${maxYear.label} with ${maxYear.value} days.
+            - The driest year was ${minYear.label} with ${minYear.value} days.
+            - The average number of rainy days is around ${ (dataset.reduce((a, b) => a + b.value, 0) / dataset.length).toFixed(1) }.
+            Briefly describe any overall trends, interesting periods, or anomalies you see in the dataset. Keep the summary to a short paragraph.`;
+
+            const result = await callGeminiAPI(prompt);
+            analysisResultDiv.innerHTML = result.text.replace(/\n/g, '<br>');
+            geminiAnalyzeButton.disabled = false;
+        });
+
+        const animateButton = document.getElementById('animateButton');
+        animateButton.addEventListener('click', drawChart);
+        
+        window.addEventListener('load', drawChart);
+        window.addEventListener('resize', drawChart);
+    </script>
+</body>
+</html>
+
+
